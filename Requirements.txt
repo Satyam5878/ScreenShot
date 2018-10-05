@@ -1,0 +1,28 @@
+New Feature Requirements:
+
+@Enhancement
+- Adding Menu Bar
+	- Will contain one item for new instance.
+	- 
+- Adding List of Screenshots taken
+	- Each list item will have save and delete options.
+	- Saving all images at bottom
+
+	
+
+	
+	
+@Appereance	
+- Overall Design:
+	- Single Window
+	- Two Vertical Pane:
+		- First Pane:
+			// Will Contain GUI for entering the fields.
+			// Mostly same as old one.
+			
+		
+		- Second Pane:
+			* This will Scrollable list.
+			* List of ScreenShot Taken
+			* for each item will have Button to Save and delete
+			* At bottom will have one Button to Save all.
