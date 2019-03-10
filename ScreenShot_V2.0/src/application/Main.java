@@ -15,6 +15,5 @@ public class Main extends Application {
 	// Java fx framework will call this method
 	public void start(Stage stage) throws Exception {
 		new NewInstance(stage);		// This creates the new instance of the application.
-
 	}
 }

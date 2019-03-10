@@ -26,3 +26,53 @@ New Feature Requirements:
 			* List of ScreenShot Taken
 			* for each item will have Button to Save and delete
 			* At bottom will have one Button to Save all.
+
+			
+@Impementation Specific
+
+- Crete New Instance of the app:
+	- Load DB file.
+		- if file exists:
+			* load it.
+		- if file do not exis:
+			* Create new default file
+	
+	- Add Menu Bar:
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
