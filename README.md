@@ -9,3 +9,14 @@
     5. Can save images at location of choice.
     
 # Examples:
+    1. First Look:
+<img src="https://github.com/Satyam5878/ScreenShot/blob/modification_branch/Images/1)FirstLook.PNG"></img>
+
+    2. After Capturing Some Screen Shots:
+<img src="https://github.com/Satyam5878/ScreenShot/blob/modification_branch/Images/2)AfterCapturingSomeScreenShot.PNG"></img>
+
+    3. Context Menu:
+<img src="https://github.com/Satyam5878/ScreenShot/blob/modification_branch/Images/3)ContextMenu.png"></img>
+ 
+    4. New Instances:
+<img src="https://github.com/Satyam5878/ScreenShot/blob/modification_branch/Images/4)NewInstances.png"></img>
