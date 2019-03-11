@@ -7,6 +7,7 @@
     3. Can delete and save the images individually.
     4. Can delete and save all the image at once.
     5. Can save images at location of choice.
+    6. Can create entirely new instace of the application separate from the original one.
     
 # Examples:
     1. First Look:
