@@ -131,7 +131,6 @@ public class NewInstance {
 		oos.writeObject(configFile);
 		oos.close();
 		fout.close();
-		System.out.println(System.getProperty("user.dir"));
 	}
 	
 	/**
@@ -182,6 +181,12 @@ public class NewInstance {
 		populateRightPane();
 		rootPane.setCenter(centrePane);
 	}
+	
+	/***
+	 * This function populates the left pane of the window.
+	 * feature for taking screen shots.
+	 * 
+	 * */
 	private void populateLeftPane(){
 		leftPane = new VBox();
 		//leftPane.setSpacing(10);
@@ -212,20 +217,13 @@ public class NewInstance {
 				dirChooser.setInitialDirectory(new File("C:\\"));
 				File file = dirChooser.showDialog(this.stage);
 				if (file != null) {
-	
-					// System.out.println(file.toPath());
-					// locationTxtField.setText()
 					locationPathString = file.toPath().toString()
 							.replace("\\", "\\\\");
-	
-					// System.out.println(locationPathString);
 					locationTxtField.setText(locationPathString);
 				} else {
 					// System.out.println("file is NULL");
 				}
-				// String str = "amana";
-				// str.r
-	
+				
 			});
 	
 			hbox2.getChildren().addAll(locationTxtField, browseBtn);
@@ -252,7 +250,6 @@ public class NewInstance {
 				@Override
 				public void changed(ObservableValue<? extends String> prop,
 						String oldValue, String newValue) {
-					// TODO Auto-generated method stub
 					formateString = newValue;
 				}
 				
@@ -288,14 +285,12 @@ public class NewInstance {
 				@Override
 				public void changed(ObservableValue<? extends String> prop,
 						String oldValue, String newValue) {
-					// TODO Auto-generated method stub
 					nameString = newValue;
 				}
 				
 			});
 			nameTxtField.prefWidthProperty().bind(
 					scene.widthProperty().multiply(.60));
-			// TODO --> add change listener
 	
 			hbox6.getChildren().addAll(nameTxtField);
 			leftPane.getChildren().add(hbox6);
@@ -322,7 +317,6 @@ public class NewInstance {
 
 				stage.show();
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -332,15 +326,8 @@ public class NewInstance {
 		saveBtn.disableProperty().bind(
 				locationTxtField.textProperty().isEmpty());
 		saveBtn.setOnAction(e -> {
-			// TODO --> capture screenShot and save
 			if (screenShotImage != null) {
 				String tmp1, tmp2;
-				/*
-				 * fileChooser = new FileChooser();
-				 * fileChooser.setTitle("Save screenShot");
-				 * fileChooser.showSaveDialog(stage);
-				 */
-				
 				// Set Name according the fields or default
 				if (nameString == null) {
 					Date date = new Date();
@@ -360,14 +347,9 @@ public class NewInstance {
 				}
 				try {
 
-					System.out.println("Putting the Image in list.");
-					addScreenShot(locationPathString,tmp1 + "." + tmp2,screenShotImage);
-					
-					
-					
+					addScreenShot(locationPathString,tmp1 + "." + tmp2,screenShotImage);	
 				} catch (Exception e1) {
 					msgLbl.setText("Location Incorrect");
-					// TODO Auto-generated catch block
 					// e1.printStackTrace();
 				}finally{
 					screenShotImage = null;
@@ -385,26 +367,7 @@ public class NewInstance {
 		leftPane.getChildren().add(hbox7);
 		// hbox5 End
 
-		/*
-		 * Button btn = new Button("Take ScreenShot"); btn.setOnAction(e->{ try
-		 * { BufferedImage screenShot = new Robot().createScreenCapture( new
-		 * Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-		 * ImageIO.write(screenShot,"png", new
-		 * File("F:\\Projects\\Eclipse\\TestFile\\screenShot")); } catch
-		 * (Exception e1) { // TODO Auto-generated catch block
-		 * e1.printStackTrace(); } System.out.println("Done");
-		 * 
-		 * 
-		 * });
-		 * 
-		 * HBox hbox = new HBox(); hbox.setAlignment(Pos.CENTER);
-		 * hbox.getChildren().add(btn);
-		 * 
-		 * rootPane.getChildren().add(hbox);
-		 */
-
-		
-		leftPane.setStyle("-fx-padding: 10;"
+			leftPane.setStyle("-fx-padding: 10;"
 				+ "-fx-border-style: solid inside;" + "-fx-border-width: .1;"
 				+ "-fx-border-insets: 5;" + "-fx-border-radius: 5;"
 				+ "-fx-border-color: blue;");
@@ -413,6 +376,11 @@ public class NewInstance {
 		centrePane.getItems().add(leftPane);
 		
 	}
+	/***
+	 *  This function populates the right pane which contains the
+	 *  Screen shots list and saving features 
+	 * 
+	 * */
 	private void populateRightPane(){
 		
 		
@@ -424,24 +392,17 @@ public class NewInstance {
 				saveBtns.setAlignment(Pos.CENTER_RIGHT);
 				saveAll = new Button("Save All");
 				saveAll.setOnAction(e->{
-					System.out.println("Save All pressed");
-					// TODO:
 					saveScreenShot(-2); // -2 indicate for saving all the screen shots
 					
 				});
 				deleteAll = new Button("Delete All");
 				deleteAll.setOnAction(e->{
-					System.out.println("Delete All pressed");
-					// TODO:
 					deleteScreenShot(-2); // -2 indicates deleting all the screen shots
 				});
 				saveBtns.getChildren().addAll(saveAll,deleteAll); // Adding SaveAll btn to saveBtns Hbox
 		
 		
 			rightPane.getChildren().addAll(saveBtns);
-			// listView: TODO
-			
-			
 			
 			screenShotsListView = new ListView<String>();
 				screenShotsListView.setPlaceholder(new Label("Your screen shot will appear here."));
@@ -449,16 +410,12 @@ public class NewInstance {
 				contextMenu = new ContextMenu();
 					save = new MenuItem("_Save");
 					save.setOnAction(e->{
-						// TODO
-						System.out.println("Save Pressed");
 						int idx = screenShotsListView.getSelectionModel().getSelectedIndex();
 						saveScreenShot(idx);
 						screenShotsListView.getSelectionModel().clearSelection();
 					});
 					delete = new MenuItem("_Delete");
 					delete.setOnAction(e->{
-						// TODO:
-						System.out.println("Delete Pressed");
 						int idx = screenShotsListView.getSelectionModel().getSelectedIndex();
 						deleteScreenShot(idx);
 						screenShotsListView.getSelectionModel().clearSelection();
@@ -490,18 +447,13 @@ public class NewInstance {
 		rootPaneLeft();
 		
 
-		// this code is for testing
-		rootPane.getCenter().setOnMouseClicked(e->{
-			System.out.println("Centre Pane Clicked");
-		});
-		//
+		
 	}
 	
 	
 	// Utility function for initializing the list view member.
 	private void populateList(){
 		
-		System.out.println("PoulateList...");
 		screenShotsListImage = new ArrayList<BufferedImage>();
 		screenShotsPathString = new ArrayList<String>();
 		
@@ -510,10 +462,7 @@ public class NewInstance {
 
 			@Override
 			public void onChanged(ListChangeListener.Change<? extends String> c) {
-				// TODO Auto-generated method stub
-				
 				// Add all the elements to the list view again
-				System.out.println("List String Changed.....");
 				while(c.next()){
 					screenShotsListView.getItems().clear();
 					screenShotsListView.getItems().addAll(screenShotsListString);
@@ -528,7 +477,6 @@ public class NewInstance {
 	 * */
 	private void deleteScreenShot(int idx){
 		
-		System.out.println("deleteScreenShot is called.");
 		if(idx>=0 && idx<= screenShotsListString.size()){
 			screenShotsPathString.remove(idx);
 			screenShotsListImage.remove(idx);
@@ -541,10 +489,8 @@ public class NewInstance {
 				
 				
 			}
-			screenShotsListString.clear();
-			
-		}
-		
+			screenShotsListString.clear();	
+		}	
 		
 	}
 	
@@ -553,17 +499,14 @@ public class NewInstance {
 	 * 
 	 * */
 	private void saveScreenShot(int idx){
-		System.out.println("saveScreenShot is called.");
 		// Code for writing the image to file.
 		if(idx>=0 && idx<= screenShotsListString.size()){
 			try {
 				ImageIO.write(screenShotsListImage.get(idx), 
-						//formateString == null ? tmp2: formateString, 
 						screenShotsListString.get(idx).substring(screenShotsListString.get(idx).indexOf(".")+1),
 						new File(screenShotsPathString.get(idx) + "\\"+screenShotsListString.get(idx)));
 				deleteScreenShot(idx);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -589,28 +532,16 @@ public class NewInstance {
 	 * 
 	 * */
 	private void addScreenShot(String pathName,String Name,BufferedImage screenShot){
-		System.out.println("addScreenShot is called.");
 		
-		
-		//screenShotsListImage.add(new BufferedImage(screenShotImage));
 		
 		ColorModel cm = screenShot.getColorModel();
-		//System.out.println("Putting the Image in list2.");
 		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-		//System.out.println("Putting the Image in list3.");
 		WritableRaster raster = screenShot.copyData(null);
-		//System.out.println("Putting the Image in list4.");
 		BufferedImage newScreenShot =  new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-		//System.out.println("Putting the Image in list5.");
 		
 		screenShotsPathString.add(pathName);
-		System.out.println(pathName);
-		//System.out.println("Putting the Image in list6.");
 		screenShotsListImage.add(newScreenShot);
-		//System.out.println("Putting the Image in list7.");
 		screenShotsListString.add(new String(Name));
-		//System.out.println("Putting the Image in list8.");
-		System.out.println("Putting the Image in list done...");
 	}
 
 }
